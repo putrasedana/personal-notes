@@ -30,11 +30,11 @@ const NoteItem = ({ note, setNotes, onDelete, onArchive }) => {
       title: editedTitle,
       body: editedBody,
     };
-    const updatedNotes = JSON.parse(localStorage.getItem("notes")).map((n) => {
-      if (n.id === id) {
+    const updatedNotes = JSON.parse(localStorage.getItem("notes")).map((note) => {
+      if (note.id === id) {
         return editedNote;
       }
-      return n;
+      return note;
     });
 
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
