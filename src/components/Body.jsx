@@ -1,16 +1,18 @@
 import React from "react";
 import NoteInput from "./NoteInput";
 import NoteList from "./NoteList";
-import ArchieveList from "./ArchieveList";
 
-const Body = ({ notes, onDelete, onArchive, onAdd }) => {
+const Body = ({ notes, setNotes, onDelete, onArchive, onAdd }) => {
+  const activeNotes = notes.filter((note) => !note.archived);
+  const archivedNotes = notes.filter((note) => note.archived);
+
   return (
     <div className="note-app__body">
       <NoteInput onAdd={onAdd} />
       <h2>Catatan Aktif</h2>
-      <NoteList notes={notes} onDelete={onDelete} onArchive={onArchive} />
+      <NoteList notes={activeNotes} setNotes={setNotes} onDelete={onDelete} onArchive={onArchive} />
       <h2>Arsip</h2>
-      <ArchieveList notes={notes} onDelete={onDelete} onArchive={onArchive} />
+      <NoteList notes={archivedNotes} setNotes={setNotes} onDelete={onDelete} onArchive={onArchive} />
     </div>
   );
 };

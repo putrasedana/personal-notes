@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import { getInitialData } from "./utils/index";
+// import { getInitialData } from "./utils/index";
 
 const App = () => {
-  const [notes, setNotes] = useState(getInitialData);
+  const [notes, setNotes] = useState(() => {
+    const initialData = localStorage.getItem("notes");
+    return initialData ? JSON.parse(initialData) : [];
+  });
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   const deleteNote = (id) => {
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
@@ -33,10 +40,10 @@ const App = () => {
   const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div>
+    <>
       <Header onSearch={searchNote} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Body notes={filteredNotes} onDelete={deleteNote} onArchive={archiveNote} onAdd={addNote} />
-    </div>
+      <Body notes={filteredNotes} setNotes={setNotes} onDelete={deleteNote} onArchive={archiveNote} onAdd={addNote} />
+    </>
   );
 };
 

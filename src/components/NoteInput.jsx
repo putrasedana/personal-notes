@@ -48,7 +48,9 @@ const NoteInput = ({ onAdd }) => {
         <p className="note-input__title__char-limit">Sisa Karakter: {charLimit}</p>
         <input type="text" className="note-input__title" placeholder="Ini adalah judul..." value={title} onChange={handleTitleChange} />
         <textarea className="note-input__body" placeholder="Tuliskan catatanmu di sini..." cols="30" rows="10" value={body} onChange={handleBodyChange}></textarea>
-        <button type="submit">Buat</button>
+        <button type="submit" className="">
+          Buat
+        </button>
       </form>
     </div>
   );
