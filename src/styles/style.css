@@ -142,6 +142,7 @@ textarea::placeholder {
 .note-item__body {
   width: 100%;
   font-size: 14px;
+  word-wrap: break-word;
 }
 
 .note-item__action {
@@ -282,19 +283,35 @@ textarea::placeholder {
   .edit-popup {
     width: 20rem;
   }
+
+  .note-app__header {
+    flex-direction: column;
+  }
+
+  .note-search input {
+    width: 100%;
+  }
+
+  .note-search {
+    width: 100%;
+  }
+
+  .note-app__header h1 {
+    margin: 1rem 0 1rem;
+  }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 768px) {
   .notes-list {
     grid-template-columns: repeat(3, 1fr);
   }
 
   .note-search input {
-    min-width: 400px;
+    width: 400px;
   }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1025px) {
   .notes-list {
     grid-template-columns: repeat(4, 1fr);
   }
